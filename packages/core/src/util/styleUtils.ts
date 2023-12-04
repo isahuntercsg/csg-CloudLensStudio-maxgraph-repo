@@ -17,8 +17,7 @@ limitations under the License.
 */
 
 import Client from '../Client';
-import {
-  ALIGN,
+import {ALIGN,
   DEFAULT_FONTFAMILY,
   DEFAULT_FONTSIZE,
   FONT,
