@@ -1,5 +1,11 @@
 # `maxGraph` Change Log
 
+## UNRELEASED
+
+**Breaking Changes**
+- it is no more possible to pass a 'n' value for the `max` property of the `Multiplicity` class. Pass `null` instead to have the same effect.
+- the UMD bundle is no more provided in the npm package.
+
 ## 0.4.1
 
 Release date: `2023-10-30`
