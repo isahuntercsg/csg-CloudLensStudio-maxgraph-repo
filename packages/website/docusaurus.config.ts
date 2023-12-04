@@ -1,10 +1,11 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'maxGraph',
-  tagline: 'A TypeScript library which can display and allow interaction with vector diagrams.',
+  tagline:
+    'A TypeScript library which can display and allow interaction with vector diagrams.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -37,8 +38,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/maxGraph/maxGraph/tree/main/packages/docs/',
+          editUrl: 'https://github.com/maxGraph/maxGraph/tree/main/packages/docs/',
         },
         theme: {
           customCss: './src/css/custom.css',
