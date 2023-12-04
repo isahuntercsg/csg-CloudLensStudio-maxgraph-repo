@@ -13,7 +13,7 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         // TODO prettier configuration works
-        "prettier"
+        "plugin:prettier/recommended"
     ],
     "rules": {
         "no-misleading-character-class": "warn",
