@@ -6,7 +6,8 @@
         "es2020": true
     },
     "plugins": [
-        "@typescript-eslint",
+//        "import"
+//        "@typescript-eslint",
         "eslint-plugin-import"
     ],
     "extends": [
