@@ -5,6 +5,8 @@
         "browser": true,
         "es2020": true
     },
+    // TODO configure parser
+//    "parser": "",
     "plugins": [
 //        "import"
 //        "@typescript-eslint",
