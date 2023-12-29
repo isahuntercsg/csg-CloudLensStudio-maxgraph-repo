@@ -272,11 +272,11 @@ class EdgeStyle {
    * Implements an orthogonal edge style. Use {@link EdgeSegmentHandler}
    * as an interactive handler for this style.
    *
-   * @param state <CellState> that represents the edge to be updated.
-   * @param sourceScaled <CellState> that represents the source terminal.
-   * @param targetScaled <CellState> that represents the target terminal.
+   * @param state {@link CellState} that represents the edge to be updated.
+   * @param sourceScaled {@link CellState} that represents the source terminal.
+   * @param targetScaled {@link CellState} that represents the target terminal.
    * @param controlHints List of relative control points.
-   * @param result Array of <Point> that represent the actual points of the edge.
+   * @param result Array of {@link Point} that represent the actual points of the edge.
    */
   static SegmentConnector: EdgeStyleFunction = SegmentConnectorFunction;
 
