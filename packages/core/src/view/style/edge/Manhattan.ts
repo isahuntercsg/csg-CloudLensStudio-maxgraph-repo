@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import { inlineRoutePatterns, routePatterns } from './shared';
+import { SegmentConnector } from './SegmentConnector';
 import Geometry from '../../geometry/Geometry';
 import CellState from '../../cell/CellState';
 import Point from '../../geometry/Point';
@@ -575,7 +576,7 @@ function ManhattanConnector(
   ) {
     // If edge is dragged after calculation, points will be filled, so fallback to SegmentConnector
     if ((points != null && points.length > 0) || source == null || target == null) {
-      EdgeStyle.SegmentConnector(state, source, target, points, result);
+      SegmentConnector(state, source, target, points, result);
       return;
     }
 
