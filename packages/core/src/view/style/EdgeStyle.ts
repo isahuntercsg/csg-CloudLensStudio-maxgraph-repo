@@ -17,6 +17,7 @@ limitations under the License.
 */
 
 import { EntityRelation as EntityRelationFunction } from './edge/EntityRelation';
+import { Loop as LoopFunction } from './edge/Loop';
 
 import { getValue } from '../../util/Utils';
 import { getNumber } from '../../util/StringUtils';
@@ -33,7 +34,6 @@ import {
   DIRECTION,
   DIRECTION_MASK,
   ELBOW,
-  ENTITY_SEGMENT,
   NONE,
 } from '../../util/Constants';
 import Rectangle from '../geometry/Rectangle';
@@ -131,82 +131,7 @@ class EdgeStyle {
   /**
    * Implements a self-reference, aka. loop.
    */
-  static Loop(
-    state: CellState,
-    source: CellState,
-    target: CellState,
-    points: Point[],
-    result: Point[]
-  ) {
-    const pts = state.absolutePoints;
-
-    const p0 = pts[0];
-    const pe = pts[pts.length - 1];
-
-    if (p0 != null && pe != null) {
-      if (points != null && points.length > 0) {
-        for (let i = 0; i < points.length; i += 1) {
-          let pt = points[i];
-          pt = <Point>state.view.transformControlPoint(state, pt);
-          result.push(new Point(pt.x, pt.y));
-        }
-      }
-
-      return;
-    }
-
-    if (source != null) {
-      const { view } = state;
-      const { graph } = view;
-      let pt = points != null && points.length > 0 ? points[0] : null;
-
-      if (pt != null) {
-        pt = <Point>view.transformControlPoint(state, pt);
-        if (contains(source, pt.x, pt.y)) {
-          pt = null;
-        }
-      }
-
-      let x = 0;
-      let dx = 0;
-      let y = 0;
-      let dy = 0;
-
-      const seg = getValue(state.style, 'segment', graph.gridSize) * view.scale;
-      const dir = getValue(state.style, 'direction', DIRECTION.WEST);
-
-      if (dir === DIRECTION.NORTH || dir === DIRECTION.SOUTH) {
-        x = view.getRoutingCenterX(source);
-        dx = seg;
-      } else {
-        y = view.getRoutingCenterY(source);
-        dy = seg;
-      }
-
-      if (pt == null || pt.x < source.x || pt.x > source.x + source.width) {
-        if (pt != null) {
-          x = pt.x;
-          dy = Math.max(Math.abs(y - pt.y), dy);
-        } else if (dir === DIRECTION.NORTH) {
-          y = source.y - 2 * dx;
-        } else if (dir === DIRECTION.SOUTH) {
-          y = source.y + source.height + 2 * dx;
-        } else if (dir === DIRECTION.EAST) {
-          x = source.x - 2 * dy;
-        } else {
-          x = source.x + source.width + 2 * dy;
-        }
-      } else if (pt !== null) {
-        x = view.getRoutingCenterX(source);
-        dx = Math.max(Math.abs(x - pt.x), dy);
-        y = pt.y;
-        dy = 0;
-      }
-
-      result.push(new Point(x - dx, y - dy));
-      result.push(new Point(x + dx, y + dy));
-    }
-  }
+  static Loop: EdgeStyleFunction = LoopFunction;
 
   /**
    * Uses either <SideToSide> or <TopToBottom> depending on the horizontal
