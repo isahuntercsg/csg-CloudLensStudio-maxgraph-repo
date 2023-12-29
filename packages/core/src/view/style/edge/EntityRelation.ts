@@ -1,5 +1,7 @@
 /*
-Copyright 2023-present The maxGraph project Contributors
+Copyright 2021-present The maxGraph project Contributors
+Copyright (c) 2006-2015, JGraph Ltd
+Copyright (c) 2006-2015, Gaudenz Alder
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -29,7 +31,6 @@ export function EntityRelation(
   result: Point[]
 ) {
   const { view } = state;
-  const { graph } = view;
   const segment = getValue(state.style, 'segment', ENTITY_SEGMENT) * view.scale;
 
   const pts = state.absolutePoints;
