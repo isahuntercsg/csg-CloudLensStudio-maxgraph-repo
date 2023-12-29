@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import { inlineRoutePatterns, routePatterns } from './shared';
+import { OrthConnector } from './OrthConnector';
 import { SegmentConnector } from './SegmentConnector';
 import Geometry from '../../geometry/Geometry';
 import CellState from '../../cell/CellState';
@@ -62,7 +63,7 @@ const MANHATTAN_PADDING_BOX = new Geometry(
  * Implements router to find shortest route that avoids cells using
  * manhattan distance as metric.
  */
-function ManhattanConnector(
+export function ManhattanConnector(
   state: CellState,
   source: CellState,
   target: CellState,
@@ -589,13 +590,13 @@ function ManhattanConnector(
     obstacleMap.build(source, target);
     if (!sourceBBox || !targetBBox) {
       // Fallback to OrthConnector
-      return EdgeStyle.OrthConnector(state, source, target, points, result);
+      return OrthConnector(state, source, target, points, result);
     }
     const routePoints = findRoute(sourceBBox, targetBBox, obstacleMap, opt);
 
     if (routePoints == null || routePoints.length == 0) {
       // Fallback to OrthConnector
-      return EdgeStyle.OrthConnector(state, source, target, points, result);
+      return OrthConnector(state, source, target, points, result);
     }
     if (state.style) {
       if (state.visibleSourceState && routePoints.length > 0) {
