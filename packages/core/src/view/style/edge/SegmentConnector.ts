@@ -27,8 +27,8 @@ export function SegmentConnector(
   targetScaled: CellState,
   controlHints: Point[],
   result: Point[]
-) {
-  // Creates array of all way- and terminalpoints
+): void {
+  // Creates array of all way- and terminal points
   // TODO: Figure out what to do when there are nulls in `pts`!
   const pts = <Point[]>(
     (<unknown>scalePointArray(<Point[]>(<unknown>state.absolutePoints), state.view.scale))
