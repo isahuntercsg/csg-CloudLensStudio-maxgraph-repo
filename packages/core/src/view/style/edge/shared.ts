@@ -16,6 +16,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import Point from '../../geometry/Point';
+import type CellState from '../../cell/CellState';
+
 export const routePatterns = [
   [
     [513, 2308, 2081, 2562],
@@ -49,3 +52,52 @@ export const inlineRoutePatterns = [
   [null, [2114, 2561], null, null],
   [[2081, 2562], [1057, 2114, 2568], [2184, 2562], null],
 ];
+
+/**
+ * Scales an array of {@link Point}
+ *
+ * @param points array of {@link Point} to scale
+ * @param scale the scaling to divide by
+ */
+export function scalePointArray(points: Point[], scale: number): (Point | null)[] | null {
+  let result: (Point | null)[] | null = [];
+
+  if (points != null) {
+    for (let i = 0; i < points.length; i += 1) {
+      if (points[i] != null) {
+        result[i] = new Point(
+          Math.round((points[i].x / scale) * 10) / 10,
+          Math.round((points[i].y / scale) * 10) / 10
+        );
+      } else {
+        result[i] = null;
+      }
+    }
+  } else {
+    result = null;
+  }
+
+  return result;
+}
+
+/**
+ * Scales an {@link CellState}.
+ *
+ * @param state {@link CellState} to scale
+ * @param scale the scaling to divide by
+ */
+export function scaleCellState(state: CellState, scale: number): CellState | null {
+  let result = null;
+
+  if (state != null) {
+    result = state.clone();
+    result.setRect(
+      Math.round((state.x / scale) * 10) / 10,
+      Math.round((state.y / scale) * 10) / 10,
+      Math.round((state.width / scale) * 10) / 10,
+      Math.round((state.height / scale) * 10) / 10
+    );
+  }
+
+  return result;
+}
