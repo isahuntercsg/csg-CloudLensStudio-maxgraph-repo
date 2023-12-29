@@ -23,6 +23,8 @@ import type InternalMouseEvent from './view/event/InternalMouseEvent';
 import Geometry from './view/geometry/Geometry';
 import type Shape from './view/geometry/Shape';
 import type ImageBox from './view/image/ImageBox';
+import Point from './view/geometry/Point';
+import Rectangle from './view/geometry/Rectangle';
 
 export type FilterFunction = (cell: Cell) => boolean;
 
@@ -499,12 +501,12 @@ export type CellStateStyle = {
   /**
    * This defines the perimeter around a particular shape.
    *
-   * For `Function` types, the possible values are the functions defined in {@link Perimeter}.
+   * For {@link PerimeterFunction} types, the possible values are the functions defined in {@link Perimeter}.
    *
    * Alternatively, use a string or a value from {@link PERIMETER} to access perimeter styles
    * registered in {@link StyleRegistry}.
    */
-  perimeter?: Function | string | null;
+  perimeter?: PerimeterFunction | string | null;
   /**
    * This is the distance between the connection point and the perimeter in pixels.
    * - When used in a vertex style, this applies to all incoming edges to floating ports
@@ -1056,3 +1058,18 @@ export type IdentityFunction = {
   (): any;
   [IDENTITY_FIELD_NAME]?: string;
 };
+
+export type EdgeStyleFunction = (
+  state: CellState,
+  source: CellState,
+  target: CellState,
+  points: Point[],
+  result: Point[]
+) => void;
+
+export type PerimeterFunction = (
+  bounds: Rectangle,
+  vertex: CellState,
+  next: Point,
+  orthogonal: boolean
+) => Point;
