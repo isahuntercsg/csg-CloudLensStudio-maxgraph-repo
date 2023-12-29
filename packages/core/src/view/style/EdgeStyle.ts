@@ -20,6 +20,7 @@ import { EntityRelation as EntityRelationFunction } from './edge/EntityRelation'
 import { Loop as LoopFunction } from './edge/Loop';
 import { SegmentConnector as SegmentConnectorFunction } from './edge/SegmentConnector';
 import { TopToBottom as TopToBottomFunction } from './edge/TopToBottom';
+import { SideToSide as SideToSideFunction } from './edge/SideToSide';
 
 import { getValue } from '../../util/Utils';
 import { getNumber } from '../../util/StringUtils';
@@ -190,76 +191,7 @@ class EdgeStyle {
    *
    * See {@link EntityRelation} for a description of the parameters.
    */
-  static SideToSide(
-    state: CellState,
-    source: CellState,
-    target: CellState,
-    points: Point[],
-    result: Point[]
-  ) {
-    const { view } = state;
-    let pt = points != null && points.length > 0 ? points[0] : null;
-    const pts = state.absolutePoints;
-    const p0 = pts[0];
-    const pe = pts[pts.length - 1];
-
-    if (pt != null) {
-      pt = view.transformControlPoint(state, pt);
-    }
-
-    if (p0 != null) {
-      source = new CellState();
-      source.x = p0.x;
-      source.y = p0.y;
-    }
-
-    if (pe != null) {
-      target = new CellState();
-      target.x = pe.x;
-      target.y = pe.y;
-    }
-
-    if (source != null && target != null) {
-      const l = Math.max(source.x, target.x);
-      const r = Math.min(source.x + source.width, target.x + target.width);
-
-      const x = pt != null ? pt.x : Math.round(r + (l - r) / 2);
-
-      let y1 = view.getRoutingCenterY(source);
-      let y2 = view.getRoutingCenterY(target);
-
-      if (pt != null) {
-        if (pt.y >= source.y && pt.y <= source.y + source.height) {
-          y1 = pt.y;
-        }
-
-        if (pt.y >= target.y && pt.y <= target.y + target.height) {
-          y2 = pt.y;
-        }
-      }
-
-      if (!contains(target, x, y1) && !contains(source, x, y1)) {
-        result.push(new Point(x, y1));
-      }
-
-      if (!contains(target, x, y2) && !contains(source, x, y2)) {
-        result.push(new Point(x, y2));
-      }
-
-      if (result.length === 1) {
-        if (pt != null) {
-          if (!contains(target, x, pt.y) && !contains(source, x, pt.y)) {
-            result.push(new Point(x, pt.y));
-          }
-        } else {
-          const t = Math.max(source.y, target.y);
-          const b = Math.min(source.y + source.height, target.y + target.height);
-
-          result.push(new Point(x, t + (b - t) / 2));
-        }
-      }
-    }
-  }
+  static SideToSide: EdgeStyleFunction = SideToSideFunction;
 
   /**
    * Implements a horizontal elbow edge.
