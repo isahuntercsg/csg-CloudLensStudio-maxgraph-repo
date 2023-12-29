@@ -16,6 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import { EntityRelation as EntityRelationFunction } from './edge/EntityRelation';
+
 import { getValue } from '../../util/Utils';
 import { getNumber } from '../../util/StringUtils';
 import {
@@ -36,6 +38,7 @@ import {
 } from '../../util/Constants';
 import Rectangle from '../geometry/Rectangle';
 import Geometry from '../geometry/Geometry';
+import { EdgeStyleFunction } from '../../types';
 
 /**
  * Provides various edge styles to be used as the values for
@@ -56,13 +59,13 @@ import Geometry from '../geometry/Geometry';
  * object as follows:
  *
  * ```javascript
- * mxEdgeStyle.MyStyle = (state, source, target, points, result)=>
+ * EdgeStyle.MyStyle = (state, source, target, points, result)=>
  * {
  *   if (source != null && target != null)
  *   {
- *     let pt = new mxPoint(target.getCenterX(), source.getCenterY());
+ *     let pt = new Point(target.getCenterX(), source.getCenterY());
  *
- *     if (mxUtils.contains(source, pt.x, pt.y))
+ *     if (Utils.contains(source, pt.x, pt.y))
  *     {
  *       pt.y = source.y + source.height;
  *     }
@@ -117,120 +120,13 @@ class EdgeStyle {
    * result array are then replaced with Point that take into account
    * the terminal's perimeter and next point on the edge.
    *
-   * @param state <CellState> that represents the edge to be updated.
-   * @param source <CellState> that represents the source terminal.
-   * @param target <CellState> that represents the target terminal.
+   * @param state {@link CellState} that represents the edge to be updated.
+   * @param source {@link CellState} that represents the source terminal.
+   * @param target {@link CellState} that represents the target terminal.
    * @param points List of relative control points.
-   * @param result Array of <Point> that represent the actual points of the
-   * edge.
+   * @param result Array of {@link Point} that represent the actual points of the edge.
    */
-  static EntityRelation(
-    state: CellState,
-    source: CellState,
-    target: CellState,
-    points: Point[],
-    result: Point[]
-  ) {
-    const { view } = state;
-    const { graph } = view;
-    const segment = getValue(state.style, 'segment', ENTITY_SEGMENT) * view.scale;
-
-    const pts = state.absolutePoints;
-    const p0 = pts[0];
-    const pe = pts[pts.length - 1];
-
-    let isSourceLeft = false;
-
-    if (source != null) {
-      const sourceGeometry = <Geometry>source.cell.getGeometry();
-
-      if (sourceGeometry.relative) {
-        isSourceLeft = sourceGeometry.x <= 0.5;
-      } else if (target != null) {
-        isSourceLeft =
-          (pe != null ? pe.x : target.x + target.width) < (p0 != null ? p0.x : source.x);
-      }
-    }
-
-    if (p0 != null) {
-      source = new CellState();
-      source.x = p0.x;
-      source.y = p0.y;
-    } else if (source != null) {
-      const constraint = getPortConstraints(source, state, true, DIRECTION_MASK.NONE);
-
-      if (
-        constraint !== DIRECTION_MASK.NONE &&
-        constraint !== DIRECTION_MASK.WEST + DIRECTION_MASK.EAST
-      ) {
-        isSourceLeft = constraint === DIRECTION_MASK.WEST;
-      }
-    } else {
-      return;
-    }
-
-    let isTargetLeft = true;
-
-    if (target != null) {
-      const targetGeometry = <Geometry>target.cell.getGeometry();
-
-      if (targetGeometry.relative) {
-        isTargetLeft = targetGeometry.x <= 0.5;
-      } else if (source != null) {
-        isTargetLeft =
-          (p0 != null ? p0.x : source.x + source.width) < (pe != null ? pe.x : target.x);
-      }
-    }
-
-    if (pe != null) {
-      target = new CellState();
-      target.x = pe.x;
-      target.y = pe.y;
-    } else if (target != null) {
-      const constraint = getPortConstraints(target, state, false, DIRECTION_MASK.NONE);
-
-      if (
-        constraint !== DIRECTION_MASK.NONE &&
-        constraint != DIRECTION_MASK.WEST + DIRECTION_MASK.EAST
-      ) {
-        isTargetLeft = constraint === DIRECTION_MASK.WEST;
-      }
-    }
-
-    if (source != null && target != null) {
-      const x0 = isSourceLeft ? source.x : source.x + source.width;
-      const y0 = view.getRoutingCenterY(source);
-
-      const xe = isTargetLeft ? target.x : target.x + target.width;
-      const ye = view.getRoutingCenterY(target);
-
-      const seg = segment;
-
-      let dx = isSourceLeft ? -seg : seg;
-      const dep = new Point(x0 + dx, y0);
-
-      dx = isTargetLeft ? -seg : seg;
-      const arr = new Point(xe + dx, ye);
-
-      // Adds intermediate points if both go out on same side
-      if (isSourceLeft === isTargetLeft) {
-        const x = isSourceLeft ? Math.min(x0, xe) - segment : Math.max(x0, xe) + segment;
-
-        result.push(new Point(x, y0));
-        result.push(new Point(x, ye));
-      } else if (dep.x < arr.x === isSourceLeft) {
-        const midY = y0 + (ye - y0) / 2;
-
-        result.push(dep);
-        result.push(new Point(dep.x, midY));
-        result.push(new Point(arr.x, midY));
-        result.push(arr);
-      } else {
-        result.push(dep);
-        result.push(arr);
-      }
-    }
-  }
+  static EntityRelation: EdgeStyleFunction = EntityRelationFunction;
 
   /**
    * Implements a self-reference, aka. loop.
