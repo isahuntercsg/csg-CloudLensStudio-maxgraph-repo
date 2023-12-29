@@ -18,13 +18,13 @@ import { DIRECTION, IDENTITY_FIELD_NAME } from './util/Constants';
 import type { Graph } from './view/Graph';
 import type Cell from './view/cell/Cell';
 import type CellState from './view/cell/CellState';
-import EventSource from './view/event/EventSource';
+import type EventSource from './view/event/EventSource';
 import type InternalMouseEvent from './view/event/InternalMouseEvent';
-import Geometry from './view/geometry/Geometry';
+import type Geometry from './view/geometry/Geometry';
+import type Point from './view/geometry/Point';
+import type Rectangle from './view/geometry/Rectangle';
 import type Shape from './view/geometry/Shape';
 import type ImageBox from './view/image/ImageBox';
-import Point from './view/geometry/Point';
-import Rectangle from './view/geometry/Rectangle';
 
 export type FilterFunction = (cell: Cell) => boolean;
 
