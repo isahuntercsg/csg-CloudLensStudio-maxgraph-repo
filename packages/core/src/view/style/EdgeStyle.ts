@@ -16,6 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import { ElbowConnector as ElbowConnectorFunction } from './edge/ElbowConnector';
 import { EntityRelation as EntityRelationFunction } from './edge/EntityRelation';
 import { Loop as LoopFunction } from './edge/Loop';
 import { SegmentConnector as SegmentConnectorFunction } from './edge/SegmentConnector';
@@ -25,7 +26,6 @@ import { SideToSide as SideToSideFunction } from './edge/SideToSide';
 import { getValue } from '../../util/Utils';
 import { getNumber } from '../../util/StringUtils';
 import {
-  contains,
   getBoundingBox,
   getPortConstraints,
   reversePortConstraints,
@@ -36,12 +36,12 @@ import {
   DEFAULT_MARKERSIZE,
   DIRECTION,
   DIRECTION_MASK,
-  ELBOW,
   NONE,
 } from '../../util/Constants';
 import Rectangle from '../geometry/Rectangle';
 import Geometry from '../geometry/Geometry';
 import { EdgeStyleFunction } from '../../types';
+import { ElbowConnector } from './edge/ElbowConnector';
 
 /**
  * Provides various edge styles to be used as the values for
@@ -142,49 +142,7 @@ class EdgeStyle {
    *
    * See {@link EntityRelation} for a description of the parameters.
    */
-  static ElbowConnector(
-    state: CellState,
-    source: CellState,
-    target: CellState,
-    points: Point[],
-    result: Point[]
-  ) {
-    let pt = points != null && points.length > 0 ? points[0] : null;
-
-    let vertical = false;
-    let horizontal = false;
-
-    if (source != null && target != null) {
-      if (pt != null) {
-        const left = Math.min(source.x, target.x);
-        const right = Math.max(source.x + source.width, target.x + target.width);
-
-        const top = Math.min(source.y, target.y);
-        const bottom = Math.max(source.y + source.height, target.y + target.height);
-
-        pt = <Point>state.view.transformControlPoint(state, pt);
-        vertical = pt.y < top || pt.y > bottom;
-        horizontal = pt.x < left || pt.x > right;
-      } else {
-        const left = Math.max(source.x, target.x);
-        const right = Math.min(source.x + source.width, target.x + target.width);
-
-        vertical = left === right;
-        if (!vertical) {
-          const top = Math.max(source.y, target.y);
-          const bottom = Math.min(source.y + source.height, target.y + target.height);
-
-          horizontal = top === bottom;
-        }
-      }
-    }
-
-    if (!horizontal && (vertical || state.style.elbow === ELBOW.VERTICAL)) {
-      EdgeStyle.TopToBottom(state, source, target, points, result);
-    } else {
-      EdgeStyle.SideToSide(state, source, target, points, result);
-    }
-  }
+  static ElbowConnector: EdgeStyleFunction = ElbowConnectorFunction;
 
   /**
    * Implements a vertical elbow edge.

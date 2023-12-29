@@ -16,4 +16,52 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-export const yolo = 12;
+import { SideToSide } from './SideToSide';
+import { TopToBottom } from './TopToBottom';
+import CellState from '../../cell/CellState';
+import Point from '../../geometry/Point';
+import { ELBOW } from '../../../util/Constants';
+
+export function ElbowConnector(
+  state: CellState,
+  source: CellState,
+  target: CellState,
+  points: Point[],
+  result: Point[]
+) {
+  let pt = points != null && points.length > 0 ? points[0] : null;
+
+  let vertical = false;
+  let horizontal = false;
+
+  if (source != null && target != null) {
+    if (pt != null) {
+      const left = Math.min(source.x, target.x);
+      const right = Math.max(source.x + source.width, target.x + target.width);
+
+      const top = Math.min(source.y, target.y);
+      const bottom = Math.max(source.y + source.height, target.y + target.height);
+
+      pt = <Point>state.view.transformControlPoint(state, pt);
+      vertical = pt.y < top || pt.y > bottom;
+      horizontal = pt.x < left || pt.x > right;
+    } else {
+      const left = Math.max(source.x, target.x);
+      const right = Math.min(source.x + source.width, target.x + target.width);
+
+      vertical = left === right;
+      if (!vertical) {
+        const top = Math.max(source.y, target.y);
+        const bottom = Math.min(source.y + source.height, target.y + target.height);
+
+        horizontal = top === bottom;
+      }
+    }
+  }
+
+  if (!horizontal && (vertical || state.style.elbow === ELBOW.VERTICAL)) {
+    TopToBottom(state, source, target, points, result);
+  } else {
+    SideToSide(state, source, target, points, result);
+  }
+}
