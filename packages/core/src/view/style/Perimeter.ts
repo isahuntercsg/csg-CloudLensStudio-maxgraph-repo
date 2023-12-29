@@ -24,40 +24,38 @@ import CellState from '../cell/CellState';
 import { CellStateStyle } from '../../types';
 
 /**
- * @class Perimeter
- *
  * Provides various perimeter functions to be used in a style
- * as the value of {@link mxConstants.STYLE_PERIMETER}. Perimeters for
+ * as the value of {@link CellStateStyle.perimeter}. Perimeters for
  * rectangle, circle, rhombus and triangle are available.
  *
  * ### Example
  *
  * ```javascript
- * <add as="perimeter">mxPerimeter.RectanglePerimeter</add>
+ * <add as="perimeter">Perimeter.RectanglePerimeter</add>
  * ```
  *
  * ### Or programmatically
  *
  * ```javascript
- * style.perimiter = mxPerimeter.RectanglePerimeter;
+ * style.perimeter = Perimeter.RectanglePerimeter;
  * ```
  *
  * When adding new perimeter functions, it is recommended to use the
- * mxPerimeter-namespace as follows:
+ * Perimeter-namespace as follows:
  *
  * ```javascript
- * mxPerimeter.CustomPerimeter = function (bounds, vertex, next, orthogonal)
+ * Perimeter.CustomPerimeter = function (bounds, vertex, next, orthogonal)
  * {
- *   var x = 0; // Calculate x-coordinate
- *   var y = 0; // Calculate y-coordainte
+ *   const x = 0; // Calculate x-coordinate
+ *   const y = 0; // Calculate y-coordinate
  *
- *   return new mxPoint(x, y);
+ *   return new Point(x, y);
  * }
  * ```
  *
- * #### The new perimeter should then be registered in the {@link mxStyleRegistry} as follows
+ * #### The new perimeter should then be registered in the {@link StyleRegistry} as follows
  * ```javascript
- * mxStyleRegistry.putValue('customPerimeter', mxPerimeter.CustomPerimeter);
+ * StyleRegistry.putValue('customPerimeter', Perimeter.CustomPerimeter);
  * ```
  *
  * #### The custom perimeter above can now be used in a specific vertex as follows:
@@ -66,8 +64,8 @@ import { CellStateStyle } from '../../types';
  * model.setStyle(vertex, 'perimeter=customPerimeter');
  * ```
  *
- * Note that the key of the {@link mxStyleRegistry} entry for the function should
- * be used in string values, unless {@link view.allowEval} is true, in
+ * Note that the key of the {@link StyleRegistry} entry for the function should
+ * be used in string values, unless {@link GraphView.allowEval} is `true`, in
  * which case you can also use mxPerimeter.CustomPerimeter for the value in
  * the cell style above.
  *
@@ -79,7 +77,7 @@ import { CellStateStyle } from '../../types';
  * ```
  *
  * Note that the object can be used directly when programmatically setting
- * the value, but the key in the {@link mxStyleRegistry} should be used when
+ * the value, but the key in the {@link StyleRegistry} should be used when
  * setting the value via a key, value pair in a cell style.
  *
  * The parameters are explained in {@link RectanglePerimeter}.
