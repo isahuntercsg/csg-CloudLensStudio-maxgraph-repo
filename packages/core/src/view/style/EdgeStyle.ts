@@ -113,7 +113,7 @@ class EdgeStyle {
    * @param points List of relative control points.
    * @param result Array of {@link Point} that represent the actual points of the edge.
    */
-  static EntityRelation: EdgeStyleFunction = EntityRelationFunction;
+  static EntityRelation = EntityRelationFunction;
 
   /**
    * Implements a self-reference, aka. loop.

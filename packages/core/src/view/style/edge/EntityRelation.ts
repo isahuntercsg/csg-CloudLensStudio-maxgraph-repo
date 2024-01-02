@@ -23,13 +23,15 @@ import { DIRECTION_MASK, ENTITY_SEGMENT } from '../../../util/Constants';
 import { getPortConstraints } from '../../../util/mathUtils';
 import { getValue } from '../../../util/Utils';
 
-export function EntityRelation(
+import type { EdgeStyleFunction } from '../../../types';
+
+export const EntityRelation: EdgeStyleFunction = (
   state: CellState,
   source: CellState,
   target: CellState,
   _points: Point[],
   result: Point[]
-) {
+) => {
   const { view } = state;
   const segment = getValue(state.style, 'segment', ENTITY_SEGMENT) * view.scale;
 
@@ -128,4 +130,4 @@ export function EntityRelation(
       result.push(arr);
     }
   }
-}
+};
