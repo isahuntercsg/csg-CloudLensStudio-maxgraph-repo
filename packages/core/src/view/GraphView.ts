@@ -1413,7 +1413,7 @@ export class GraphView extends EventSource {
       edge.style[source ? 'sourcePerimeterSpacing' : 'targetPerimeterSpacing'] ?? 0;
     let pt = this.getPerimeterPoint(start, <Point>next, alpha === 0 && orth, border);
 
-    if (alpha !== 0) {
+    if (alpha !== 0 && pt) {
       const cos = Math.cos(alpha);
       const sin = Math.sin(alpha);
       pt = getRotatedPoint(pt, cos, sin, center);
@@ -1467,16 +1467,18 @@ export class GraphView extends EventSource {
     next: Point,
     orthogonal: boolean,
     border = 0
-  ): Point {
+  ): Point | null {
+    // TODO simplify impl, return null directly if terminal is not defined
+    // if(!terminal) return null
     let point = null;
 
     if (terminal != null) {
       const perimeter = this.getPerimeterFunction(terminal);
 
       if (perimeter != null && next != null) {
-        const bounds = <Rectangle>this.getPerimeterBounds(terminal, border);
+        const bounds = this.getPerimeterBounds(terminal, border);
 
-        if (bounds.width > 0 || bounds.height > 0) {
+        if (bounds && (bounds.width > 0 || bounds.height > 0)) {
           point = new Point(next.x, next.y);
           let flipH = false;
           let flipV = false;
