@@ -25,8 +25,6 @@ import { SegmentConnector as SegmentConnectorFunction } from './edge/SegmentConn
 import { TopToBottom as TopToBottomFunction } from './edge/TopToBottom';
 import { SideToSide as SideToSideFunction } from './edge/SideToSide';
 
-import type { EdgeStyleFunction } from '../../types';
-
 /**
  * Provides various edge styles to be used as the values for
  * <'edge'> in a cell style.
@@ -140,7 +138,7 @@ class EdgeStyle {
    *
    * See {@link EntityRelation} for a description of the parameters.
    */
-  static TopToBottom: EdgeStyleFunction = TopToBottomFunction;
+  static TopToBottom = TopToBottomFunction;
 
   /**
    * Implements an orthogonal edge style. Use {@link EdgeSegmentHandler}
