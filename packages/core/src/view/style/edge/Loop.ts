@@ -22,13 +22,15 @@ import { DIRECTION } from '../../../util/Constants';
 import { contains } from '../../../util/mathUtils';
 import { getValue } from '../../../util/Utils';
 
-export function Loop(
+import type { EdgeStyleFunction } from '../../../types';
+
+export const Loop: EdgeStyleFunction = (
   state: CellState,
   source: CellState,
   _target: CellState,
   points: Point[],
   result: Point[]
-) {
+) => {
   const pts = state.absolutePoints;
 
   const p0 = pts[0];
@@ -97,4 +99,4 @@ export function Loop(
     result.push(new Point(x - dx, y - dy));
     result.push(new Point(x + dx, y + dy));
   }
-}
+};

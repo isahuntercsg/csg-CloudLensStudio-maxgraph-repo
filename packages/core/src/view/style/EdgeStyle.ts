@@ -118,7 +118,7 @@ class EdgeStyle {
   /**
    * Implements a self-reference, aka. loop.
    */
-  static Loop: EdgeStyleFunction = LoopFunction;
+  static Loop = LoopFunction;
 
   /**
    * Uses either {@link SideToSide} or {@link TopToBottom} depending on the horizontal flag in the cell style.
