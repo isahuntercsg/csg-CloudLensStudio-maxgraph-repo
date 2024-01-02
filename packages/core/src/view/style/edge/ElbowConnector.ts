@@ -22,13 +22,15 @@ import CellState from '../../cell/CellState';
 import Point from '../../geometry/Point';
 import { ELBOW } from '../../../util/Constants';
 
-export function ElbowConnector(
+import type { EdgeStyleFunction } from '../../../types';
+
+export const ElbowConnector: EdgeStyleFunction = (
   state: CellState,
   source: CellState,
   target: CellState,
   points: Point[],
   result: Point[]
-) {
+): void => {
   let pt = points != null && points.length > 0 ? points[0] : null;
 
   let vertical = false;
@@ -64,4 +66,4 @@ export function ElbowConnector(
   } else {
     SideToSide(state, source, target, points, result);
   }
-}
+};

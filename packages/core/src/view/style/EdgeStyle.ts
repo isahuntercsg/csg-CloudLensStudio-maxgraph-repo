@@ -126,7 +126,7 @@ class EdgeStyle {
    *
    * See {@link EntityRelation} for a description of the parameters.
    */
-  static ElbowConnector: EdgeStyleFunction = ElbowConnectorFunction;
+  static ElbowConnector = ElbowConnectorFunction;
 
   /**
    * Implements a vertical elbow edge.
