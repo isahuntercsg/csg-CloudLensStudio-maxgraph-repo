@@ -21,9 +21,9 @@ import { EntityRelation as EntityRelationFunction } from './edge/EntityRelation'
 import { Loop as LoopFunction } from './edge/Loop';
 import { ManhattanConnector as ManhattanConnectorFunction } from './edge/Manhattan';
 import { OrthogonalConnector as OrthogonalConnectorFunction } from './edge/OrthogonalConnector';
-import { SegmentConnector as SegmentConnectorFunction } from './edge/SegmentConnector';
-import { TopToBottom as TopToBottomFunction } from './edge/TopToBottom';
+import { SegmentConnector as SegmentConnectorFunction } from './edge/Segment';
 import { SideToSide as SideToSideFunction } from './edge/SideToSide';
+import { TopToBottom as TopToBottomFunction } from './edge/TopToBottom';
 
 /**
  * Provides various edge styles to be used as the values for
@@ -94,7 +94,7 @@ import { SideToSide as SideToSideFunction } from './edge/SideToSide';
  * setting the value via a key, value pair in a cell style.
  */
 class EdgeStyle {
-  /**
+  /**!
    * Implements an entity relation style for edges (as used in database
    * schema diagrams). At the time the function is called, the result
    * array contains a placeholder (null) for the first absolute point,
