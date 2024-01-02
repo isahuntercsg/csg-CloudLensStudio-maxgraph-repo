@@ -20,7 +20,7 @@ import { ElbowConnector as ElbowConnectorFunction } from './edge/ElbowConnector'
 import { EntityRelation as EntityRelationFunction } from './edge/EntityRelation';
 import { Loop as LoopFunction } from './edge/Loop';
 import { ManhattanConnector as ManhattanConnectorFunction } from './edge/Manhattan';
-import { OrthConnector as OrthConnectorFunction } from './edge/OrthConnector';
+import { OrthogonalConnector as OrthogonalConnectorFunction } from './edge/OrthogonalConnector';
 import { SegmentConnector as SegmentConnectorFunction } from './edge/SegmentConnector';
 import { TopToBottom as TopToBottomFunction } from './edge/TopToBottom';
 import { SideToSide as SideToSideFunction } from './edge/SideToSide';
@@ -155,8 +155,7 @@ class EdgeStyle {
   static SegmentConnector: EdgeStyleFunction = SegmentConnectorFunction;
 
   /**
-   * Implements a local orthogonal router between the given
-   * cells.
+   * Implements a local orthogonal router between the given cells.
    *
    * @param state {@link CellState} that represents the edge to be updated.
    * @param sourceScaled {@link CellState} that represents the source terminal.
@@ -165,7 +164,7 @@ class EdgeStyle {
    * @param result Array of {@link Point}s that represent the actual points of the
    * edge.
    */
-  static OrthConnector: EdgeStyleFunction = OrthConnectorFunction;
+  static OrthConnector = OrthogonalConnectorFunction;
 
   /**
    * ManhattanConnector code is based on code from https://github.com/mwangm/mxgraph-manhattan-connector

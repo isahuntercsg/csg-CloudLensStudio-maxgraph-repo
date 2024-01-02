@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import { inlineRoutePatterns, routePatterns } from './shared';
-import { OrthConnector } from './OrthConnector';
+import { OrthogonalConnector } from './OrthogonalConnector';
 import { SegmentConnector } from './SegmentConnector';
 import Geometry from '../../geometry/Geometry';
 import CellState from '../../cell/CellState';
@@ -589,14 +589,14 @@ export function ManhattanConnector(
 
     obstacleMap.build(source, target);
     if (!sourceBBox || !targetBBox) {
-      // Fallback to OrthConnector
-      return OrthConnector(state, source, target, points, result);
+      // Fallback to OrthogonalConnector
+      return OrthogonalConnector(state, source, target, points, result);
     }
     const routePoints = findRoute(sourceBBox, targetBBox, obstacleMap, opt);
 
     if (routePoints == null || routePoints.length == 0) {
-      // Fallback to OrthConnector
-      return OrthConnector(state, source, target, points, result);
+      // Fallback to OrthogonalConnector
+      return OrthogonalConnector(state, source, target, points, result);
     }
     if (state.style) {
       if (state.visibleSourceState && routePoints.length > 0) {

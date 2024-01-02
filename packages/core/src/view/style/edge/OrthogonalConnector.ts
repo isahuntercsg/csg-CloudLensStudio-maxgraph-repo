@@ -30,13 +30,15 @@ import { getValue } from '../../../util/Utils';
 import { getNumber } from '../../../util/StringUtils';
 import { SegmentConnector } from './SegmentConnector';
 
-export function OrthConnector(
+import type { EdgeStyleFunction } from '../../../types';
+
+export const OrthogonalConnector: EdgeStyleFunction = (
   state: CellState,
   sourceScaled: CellState,
   targetScaled: CellState,
   controlHints: Point[],
   result: Point[]
-) {
+) => {
   // TODO: Figure out what to do when there are nulls in `pts`!
   const pts = <Point[]>(
     (<unknown>scalePointArray(<Point[]>state.absolutePoints, state.view.scale))
@@ -535,7 +537,7 @@ export function OrthConnector(
       result.splice(index, 1);
     }
   }
-}
+};
 
 const orthBuffer = 10;
 
