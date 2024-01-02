@@ -152,7 +152,7 @@ class EdgeStyle {
    * @param controlHints List of relative control points.
    * @param result Array of {@link Point} that represent the actual points of the edge.
    */
-  static SegmentConnector: EdgeStyleFunction = SegmentConnectorFunction;
+  static SegmentConnector = SegmentConnectorFunction;
 
   /**
    * Implements a local orthogonal router between the given cells.

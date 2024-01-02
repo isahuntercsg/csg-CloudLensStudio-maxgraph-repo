@@ -21,13 +21,15 @@ import Point from '../../geometry/Point';
 import { contains } from '../../../util/mathUtils';
 import { scaleCellState, scalePointArray } from './shared';
 
-export function SegmentConnector(
+import type { EdgeStyleFunction } from '../../../types';
+
+export const SegmentConnector: EdgeStyleFunction = (
   state: CellState,
   sourceScaled: CellState,
   targetScaled: CellState,
   controlHints: Point[],
   result: Point[]
-): void {
+): void => {
   // Creates array of all way- and terminal points
   // TODO: Figure out what to do when there are nulls in `pts`!
   const pts = <Point[]>(
@@ -304,4 +306,4 @@ export function SegmentConnector(
       }
     }
   }
-}
+};
