@@ -171,7 +171,7 @@ class EdgeStyle {
    *
    * Implements router to find the shortest route that avoids cells using manhattan distance as metric.
    */
-  static ManhattanConnector: EdgeStyleFunction = ManhattanConnectorFunction;
+  static ManhattanConnector = ManhattanConnectorFunction;
 }
 
 export default EdgeStyle;

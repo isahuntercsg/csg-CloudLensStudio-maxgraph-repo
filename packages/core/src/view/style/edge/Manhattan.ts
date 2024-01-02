@@ -23,6 +23,8 @@ import Point from '../../geometry/Point';
 import Rectangle from '../../geometry/Rectangle';
 import { DIRECTION, DIRECTION_MASK } from '../../../util/Constants';
 
+import type { EdgeStyleFunction } from '../../../types';
+
 // Size of the step to find a route
 const MANHATTAN_STEP = 12;
 
@@ -63,7 +65,7 @@ const MANHATTAN_PADDING_BOX = new Geometry(
  * Implements router to find shortest route that avoids cells using
  * manhattan distance as metric.
  */
-export function ManhattanConnector(
+export const ManhattanConnector: EdgeStyleFunction = function (
   state: CellState,
   source: CellState,
   target: CellState,
@@ -628,7 +630,7 @@ export function ManhattanConnector(
   }
 
   router(state, source, target, points, result, config);
-}
+};
 
 function getRoutePattern(
   dir: number[],
