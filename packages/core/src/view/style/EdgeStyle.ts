@@ -25,11 +25,6 @@ import { SegmentConnector as SegmentConnectorFunction } from './edge/SegmentConn
 import { TopToBottom as TopToBottomFunction } from './edge/TopToBottom';
 import { SideToSide as SideToSideFunction } from './edge/SideToSide';
 
-import Point from '../geometry/Point';
-import CellState from '../cell/CellState';
-import { DIRECTION, DIRECTION_MASK } from '../../util/Constants';
-import Rectangle from '../geometry/Rectangle';
-import Geometry from '../geometry/Geometry';
 import type { EdgeStyleFunction } from '../../types';
 
 /**
