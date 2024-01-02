@@ -16,7 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { ElbowConnector as ElbowConnectorFunction } from './edge/ElbowConnector';
+import { ElbowConnector as ElbowConnectorFunction } from './edge/Elbow';
 import { EntityRelation as EntityRelationFunction } from './edge/EntityRelation';
 import { Loop as LoopFunction } from './edge/Loop';
 import { ManhattanConnector as ManhattanConnectorFunction } from './edge/Manhattan';

@@ -28,7 +28,7 @@ import {
 } from '../../../util/mathUtils';
 import { getValue } from '../../../util/Utils';
 import { getNumber } from '../../../util/StringUtils';
-import { SegmentConnector } from './SegmentConnector';
+import { SegmentConnector } from './Segment';
 
 import type { EdgeStyleFunction } from '../../../types';
 
