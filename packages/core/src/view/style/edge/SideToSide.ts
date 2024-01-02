@@ -20,13 +20,15 @@ import CellState from '../../cell/CellState';
 import Point from '../../geometry/Point';
 import { contains } from '../../../util/mathUtils';
 
-export function SideToSide(
+import type { EdgeStyleFunction } from '../../../types';
+
+export const SideToSide: EdgeStyleFunction = (
   state: CellState,
   source: CellState,
   target: CellState,
   points: Point[],
   result: Point[]
-) {
+) => {
   const { view } = state;
   let pt = points != null && points.length > 0 ? points[0] : null;
   const pts = state.absolutePoints;
@@ -89,4 +91,4 @@ export function SideToSide(
       }
     }
   }
-}
+};

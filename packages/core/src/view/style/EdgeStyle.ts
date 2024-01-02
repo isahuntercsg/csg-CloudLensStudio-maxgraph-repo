@@ -133,7 +133,7 @@ class EdgeStyle {
    *
    * See {@link EntityRelation} for a description of the parameters.
    */
-  static SideToSide: EdgeStyleFunction = SideToSideFunction;
+  static SideToSide = SideToSideFunction;
 
   /**
    * Implements a horizontal elbow edge.
