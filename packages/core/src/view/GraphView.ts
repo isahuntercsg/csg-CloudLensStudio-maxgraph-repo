@@ -1573,7 +1573,7 @@ export class GraphView extends EventSource {
    * @param {CellState} terminal CellState that represents the terminal.
    * @param {number} border Number that adds a border between the shape and the perimeter.
    */
-  getPerimeterBounds(terminal: CellState | null = null, border = 0): Rectangle | null {
+  getPerimeterBounds(terminal: CellState | null = null, border = 0): Rectangle {
     if (terminal) {
       border += terminal.style.perimeterSpacing ?? 0;
     }
