@@ -20,7 +20,7 @@ import { ElbowConnector as ElbowConnectorFunction } from './edge/Elbow';
 import { EntityRelation as EntityRelationFunction } from './edge/EntityRelation';
 import { Loop as LoopFunction } from './edge/Loop';
 import { ManhattanConnector as ManhattanConnectorFunction } from './edge/Manhattan';
-import { OrthogonalConnector as OrthogonalConnectorFunction } from './edge/OrthogonalConnector';
+import { OrthogonalConnector as OrthogonalConnectorFunction } from './edge/Orthogonal';
 import { SegmentConnector as SegmentConnectorFunction } from './edge/Segment';
 import { SideToSide as SideToSideFunction } from './edge/SideToSide';
 import { TopToBottom as TopToBottomFunction } from './edge/TopToBottom';

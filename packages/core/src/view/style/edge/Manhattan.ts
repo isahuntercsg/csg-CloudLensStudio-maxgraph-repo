@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 import { inlineRoutePatterns, routePatterns } from './shared';
-import { OrthogonalConnector } from './OrthogonalConnector';
+import { OrthogonalConnector } from './Orthogonal';
 import { SegmentConnector } from './Segment';
 import Geometry from '../../geometry/Geometry';
 import CellState from '../../cell/CellState';
