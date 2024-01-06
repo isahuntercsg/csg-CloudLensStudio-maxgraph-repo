@@ -66,14 +66,14 @@ import { CellStateStyle } from '../../types';
  *
  * Note that the key of the {@link StyleRegistry} entry for the function should
  * be used in string values, unless {@link GraphView.allowEval} is `true`, in
- * which case you can also use mxPerimeter.CustomPerimeter for the value in
+ * which case you can also use Perimeter.CustomPerimeter for the value in
  * the cell style above.
  *
  * #### Or it can be used for all vertices in the graph as follows:
  *
  * ```javascript
  * var style = graph.getStylesheet().getDefaultVertexStyle();
- * style.perimiter = mxPerimeter.CustomPerimeter;
+ * style.perimeter = Perimeter.CustomPerimeter;
  * ```
  *
  * Note that the object can be used directly when programmatically setting
@@ -84,15 +84,12 @@ class Perimeter {
   /**
    * Describes a rectangular perimeter for the given bounds.
    *
-   * @param bounds {@link mxRectangle} that represents the absolute bounds of the
+   * @param bounds {@link Rectangle} that represents the absolute bounds of the
    * vertex.
    * @param vertex {@link CellState} that represents the vertex.
-   * @param next {@link mxPoint} that represents the nearest neighbour point on the
-   * given edge.
-   * @param orthogonal Boolean that specifies if the orthogonal projection onto
-   * the perimeter should be returned. If this is false then the intersection
-   * of the perimeter and the line between the next and the center point is
-   * returned.
+   * @param next {@link Point} that represents the nearest neighbour point on the given edge.
+   * @param orthogonal Boolean that specifies if the orthogonal projection onto the perimeter should be returned.
+   *                   If this is `false`, then the intersection of the perimeter and the line between the next and the center point is returned.
    */
   static RectanglePerimeter(
     bounds: Rectangle,
