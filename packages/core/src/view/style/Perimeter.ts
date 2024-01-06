@@ -148,8 +148,7 @@ class Perimeter {
   }
 
   /**
-   * Describes an elliptic perimeter. See {@link RectanglePerimeter}
-   * for a description of the parameters.
+   * Describes an elliptic perimeter. See {@link RectanglePerimeter} for a description of the parameters.
    */
   static EllipsePerimeter(
     bounds: Rectangle,
@@ -234,8 +233,7 @@ class Perimeter {
   }
 
   /**
-   * Describes a rhombus (aka diamond) perimeter. See {@link RectanglePerimeter}
-   * for a description of the parameters.
+   * Describes a rhombus (aka diamond) perimeter. See {@link RectanglePerimeter} for a description of the parameters.
    */
   static RhombusPerimeter(
     bounds: Rectangle,
@@ -294,8 +292,7 @@ class Perimeter {
   }
 
   /**
-   * Describes a triangle perimeter. See {@link RectanglePerimeter}
-   * for a description of the parameters.
+   * Describes a triangle perimeter. See {@link RectanglePerimeter} for a description of the parameters.
    */
   static TrianglePerimeter(
     bounds: Rectangle,
@@ -410,8 +407,7 @@ class Perimeter {
   }
 
   /**
-   * Describes a hexagon perimeter. See {@link RectanglePerimeter}
-   * for a description of the parameters.
+   * Describes a hexagon perimeter. See {@link RectanglePerimeter} for a description of the parameters.
    */
   static HexagonPerimeter(
     bounds: Rectangle,
@@ -436,10 +432,7 @@ class Perimeter {
 
     let result: Point | null = new Point(cx, cy);
 
-    const direction =
-      vertex != null
-        ? Perimeter.getValue(vertex.style, 'direction', DIRECTION.EAST)
-        : DIRECTION.EAST;
+    const direction = vertex?.style?.direction ?? DIRECTION.EAST;
     const vertical = direction === DIRECTION.NORTH || direction === DIRECTION.SOUTH;
     let a = new Point();
     let b = new Point();
@@ -712,14 +705,6 @@ class Perimeter {
       return new Point(cx, cy);
     }
     return result;
-  }
-
-  private static getValue(
-    style: CellStateStyle,
-    direction: string,
-    DIRECTION_EAST: string
-  ) {
-    return '';
   }
 }
 
