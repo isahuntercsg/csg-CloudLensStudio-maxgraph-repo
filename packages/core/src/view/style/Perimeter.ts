@@ -61,7 +61,7 @@ import { CellStateStyle } from '../../types';
  * #### The custom perimeter above can now be used in a specific vertex as follows:
  *
  * ```javascript
- * model.setStyle(vertex, 'perimeter=customPerimeter');
+ * model.setStyle(vertex, {...vertex.style, perimeter: 'customPerimeter'});
  * ```
  *
  * Note that the key of the {@link StyleRegistry} entry for the function should
