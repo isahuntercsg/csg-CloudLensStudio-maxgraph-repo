@@ -79,8 +79,6 @@ import { CellStateStyle } from '../../types';
  * Note that the object can be used directly when programmatically setting
  * the value, but the key in the {@link StyleRegistry} should be used when
  * setting the value via a key, value pair in a cell style.
- *
- * The parameters are explained in {@link RectanglePerimeter}.
  */
 class Perimeter {
   /**
