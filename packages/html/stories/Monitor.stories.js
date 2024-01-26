@@ -17,16 +17,15 @@ limitations under the License.
 
 import {
   CellOverlay,
+  cloneUtils,
+  constants,
+  DomHelpers,
+  EdgeStyle,
   Graph,
   InternalEvent,
-  EdgeStyle,
-  DomHelpers,
-  xmlUtils,
+  ModelXmlSerializer,
   Perimeter,
-  utils,
-  constants,
-  cloneUtils,
-  Codec,
+  xmlUtils,
 } from '@maxgraph/core';
 import { globalTypes, globalValues } from './shared/args.js';
 
@@ -48,7 +47,7 @@ const Template = ({ label, ...args }) => {
   container.style.overflow = 'hidden';
   container.style.width = `${args.width}px`;
   container.style.height = `${args.height}px`;
-  container.style.background = 'url(/images/grid.gif)';
+  // container.style.background = 'url(/images/grid.gif)';
   container.style.cursor = 'default';
   div.appendChild(container);
 
@@ -60,7 +59,7 @@ const Template = ({ label, ...args }) => {
 
   // Creates a process display using the activity names as IDs to refer to the elements
   const xml =
-    '<Transactions><root><Cell id="0"/><Cell id="1" parent="0"/>' +
+    '<GraphDataModel><root><Cell id="0"/><Cell id="1" parent="0"/>' +
     '<Cell id="2" value="Claim Handling Process" style="swimlane" vertex="1" parent="1"><Geometry x="1" width="850" height="400" as="geometry"/></Cell>' +
     '<Cell id="3" value="Claim Manager" style="swimlane" vertex="1" parent="2"><Geometry x="30" width="820" height="200" as="geometry"/></Cell>' +
     '<Cell id="5" value="" style="start" vertex="1" parent="3"><Geometry x="40" y="85" width="30" height="30" as="geometry"/></Cell>' +
@@ -97,10 +96,10 @@ const Template = ({ label, ...args }) => {
     '<Cell id="29" value="" edge="1" parent="2" source="22" target="EnterAccountingData"><Geometry relative="1" as="geometry"><Array as="points"><Point x="469" y="40"/></Array></Geometry></Cell>' +
     '<Cell id="30" value="" edge="1" parent="2" source="27" target="EnterAccountingData"><Geometry relative="1" as="geometry"><Array as="points"><Point x="469" y="40"/></Array></Geometry></Cell>' +
     '<Cell id="33" value="" edge="1" parent="2" source="6" target="EnterAccountingData"><Geometry relative="1" as="geometry"><Array as="points"><Point x="255" y="200"/></Array></Geometry></Cell>' +
-    '</root></Transactions>';
-  const doc = xmlUtils.parseXml(xml);
-  const codec = new Codec(doc);
-  codec.decode(doc.documentElement, graph.getDataModel());
+    '</root></GraphDataModel>';
+
+  const modelXmlSerializer = new ModelXmlSerializer(graph.getDataModel());
+  modelXmlSerializer.import(xml);
 
   const buttons = document.createElement('div');
   div.appendChild(buttons);
@@ -220,7 +219,7 @@ const Template = ({ label, ...args }) => {
     style.rounded = true;
     style.shadow = true;
 
-    style = [];
+    style = {};
     style.shape = constants.SHAPE.SWIMLANE;
     style.strokeColor = '#a0a0a0';
     style.fontColor = '#606060';
@@ -236,7 +235,7 @@ const Template = ({ label, ...args }) => {
 
     graph.getStylesheet().putCellStyle('swimlane', style);
 
-    style = [];
+    style = {};
     style.shape = constants.SHAPE.RHOMBUS;
     style.perimeter = Perimeter.RhombusPerimeter;
     style.strokeColor = '#91BCC0';
@@ -248,7 +247,7 @@ const Template = ({ label, ...args }) => {
     style.fontSize = 16;
     graph.getStylesheet().putCellStyle('step', style);
 
-    style = [];
+    style = {};
     style.shape = constants.SHAPE.ELLIPSE;
     style.perimeter = Perimeter.EllipsePerimeter;
     style.fontColor = 'gray';
