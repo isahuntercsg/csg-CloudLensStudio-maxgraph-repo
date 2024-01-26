@@ -270,13 +270,17 @@ const Template = ({ label, ...args }: Record<string, any>) => {
 
   // Creates a button to invoke the refresh function
   buttons.appendChild(
-    DomHelpers.button('Update', function (evt) {
+    DomHelpers.button('Update', () => {
       // XML is normally fetched from URL at server using utils.get - this is a client-side
       // string with randomized states to demonstrate the idea of the workflow monitor
-      const xml =
-        `<process><update id="ApproveClaim" state="${getState()}"/><update id="AuthorizeClaim" state="${getState()}"/>` +
-        `<update id="CheckAccountingData" state="${getState()}"/><update id="ReviewClaim" state="${getState()}"/>` +
-        `<update id="ApproveReviewedClaim" state="${getState()}"/><update id="EnterAccountingData" state="${getState()}"/></process>`;
+      const xml = `<process>
+        <update id="ApproveClaim" state="${getState()}"/>
+        <update id="AuthorizeClaim" state="${getState()}"/>
+        <update id="CheckAccountingData" state="${getState()}"/>
+        <update id="ReviewClaim" state="${getState()}"/>
+        <update id="ApproveReviewedClaim" state="${getState()}"/>
+        <update id="EnterAccountingData" state="${getState()}"/>
+      </process>`;
       update(graph, xml);
     })
   );
@@ -381,7 +385,7 @@ const Template = ({ label, ...args }: Record<string, any>) => {
     style.strokeColor = '#808080';
     style.fillColor = 'white';
     style.gradientColor = 'white';
-    style.gradientDirection = constants.DIRECTION.EAST;
+    style.gradientDirection = 'east';
     style.rounded = true;
     // style.shadow = true; // TMP disable until we cannot change the shadow color
     style.fontStyle = 1;
@@ -393,7 +397,7 @@ const Template = ({ label, ...args }: Record<string, any>) => {
     // style.shadow = true; // TMP disable until we cannot change the shadow color
 
     style = {};
-    style.shape = constants.SHAPE.SWIMLANE;
+    style.shape = 'swimlane';
     style.strokeColor = '#a0a0a0';
     style.fontColor = '#606060';
     style.fillColor = '#E0E0DF';
@@ -415,20 +419,20 @@ const Template = ({ label, ...args }: Record<string, any>) => {
     style.fontColor = 'gray';
     style.fillColor = '#91BCC0';
     style.gradientColor = 'white';
-    style.align = constants.ALIGN.CENTER;
-    style.verticalAlign = constants.ALIGN.MIDDLE;
+    style.align = 'center';
+    style.verticalAlign = 'middle';
     style.fontSize = 16;
     graph.getStylesheet().putCellStyle('step', style);
 
     style = {};
-    style.shape = constants.SHAPE.ELLIPSE;
+    style.shape = 'ellipse';
     style.perimeter = Perimeter.EllipsePerimeter;
     style.fontColor = 'gray';
     style.fillColor = '#A0C88F';
     style.gradientColor = 'white';
     style.strokeColor = '#A0C88F';
-    style.align = constants.ALIGN.CENTER;
-    style.verticalAlign = constants.ALIGN.MIDDLE;
+    style.align = 'center';
+    style.verticalAlign = 'middle';
     style.fontSize = 16;
     graph.getStylesheet().putCellStyle('start', style);
 
