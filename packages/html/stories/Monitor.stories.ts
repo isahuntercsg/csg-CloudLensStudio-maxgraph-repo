@@ -168,75 +168,95 @@ const Template = ({ label, ...args }: Record<string, any>) => {
             </Array>
           </Geometry>
         </Cell>
-        <Cell id="4" value="Accountant" style="swimlane" vertex="1" parent="2">
-            <Geometry x="30" y="200" width="820" height="200" as="geometry"/>
+        <Cell id="4" value="Accountant" vertex="1" parent="2">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="swimlane" />
+            </Array>
+          </Object>
+          <Geometry x="30" y="200" width="820" height="200" as="geometry"/>
         </Cell>
         <Cell id="EnterAccountingData" value="Enter&#xa;Data" vertex="1" parent="4">
-            <Geometry x="430" y="80" width="100" height="40" as="geometry"/>
+          <Geometry x="430" y="80" width="100" height="40" as="geometry"/>
         </Cell>
-        <Cell id="14" value="X" style="step" vertex="1" parent="4">
-            <Geometry x="550" y="85" width="30" height="30" as="geometry"/>
+        <Cell id="14" value="X" vertex="1" parent="4">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="step" />
+            </Array>
+          </Object>
+          <Geometry x="550" y="85" width="30" height="30" as="geometry"/>
         </Cell>
         <Cell id="15" value="" edge="1" parent="4" source="EnterAccountingData" target="14">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
         <Cell id="CheckAccountingData" value="Check&#xa;Data" vertex="1" parent="4">
-            <Geometry x="600" y="80" width="100" height="40" as="geometry"/>
+          <Geometry x="600" y="80" width="100" height="40" as="geometry"/>
         </Cell>
         <Cell id="16" value="" edge="1" parent="4" source="14" target="CheckAccountingData">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
-        <Cell id="17" value="X" style="step" vertex="1" parent="4">
-            <Geometry x="720" y="85" width="30" height="30" as="geometry"/>
+        <Cell id="17" value="X" vertex="1" parent="4">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="step" />
+            </Array>
+          </Object>
+          <Geometry x="720" y="85" width="30" height="30" as="geometry"/>
         </Cell>
         <Cell id="18" value="" edge="1" parent="4" source="CheckAccountingData" target="17">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
-        <Cell id="19" value="" style="end" vertex="1" parent="4">
-            <Geometry x="770" y="85" width="30" height="30" as="geometry"/>
+        <Cell id="19" value="" vertex="1" parent="4">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="end" />
+            </Array>
+          </Object>
+          <Geometry x="770" y="85" width="30" height="30" as="geometry"/>
         </Cell>
         <Cell id="20" value="" edge="1" parent="4" source="17" target="19">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
         <Cell id="31" value="" edge="1" parent="4" source="17" target="EnterAccountingData">
-            <Geometry relative="1" as="geometry">
-                <Array as="points">
-                    <Point x="625" y="160"/>
-                </Array>
-            </Geometry>
+          <Geometry relative="1" as="geometry">
+            <Array as="points">
+              <Point x="625" y="160"/>
+            </Array>
+          </Geometry>
         </Cell>
         <Cell id="13" value="" edge="1" parent="2" source="7" target="EnterAccountingData">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
         <Cell id="24" value="" edge="1" parent="2" source="14" target="ReviewClaim" style="edgeStyle=none">
-            <Geometry relative="1" as="geometry">
-                <Array as="points">
-                    <Point x="595" y="180"/>
-                    <Point x="480" y="180"/>
-                    <Point x="480" y="100"/>
-                </Array>
-            </Geometry>
+          <Geometry relative="1" as="geometry">
+            <Array as="points">
+              <Point x="595" y="180"/>
+              <Point x="480" y="180"/>
+              <Point x="480" y="100"/>
+            </Array>
+          </Geometry>
         </Cell>
         <Cell id="29" value="" edge="1" parent="2" source="22" target="EnterAccountingData">
-            <Geometry relative="1" as="geometry">
-                <Array as="points">
-                    <Point x="469" y="40"/>
-                </Array>
-            </Geometry>
+          <Geometry relative="1" as="geometry">
+            <Array as="points">
+              <Point x="469" y="40"/>
+            </Array>
+          </Geometry>
         </Cell>
         <Cell id="30" value="" edge="1" parent="2" source="27" target="EnterAccountingData">
             <Geometry relative="1" as="geometry">
-                <Array as="points">
-                    <Point x="469" y="40"/>
-                </Array>
+              <Array as="points">
+                <Point x="469" y="40"/>
+              </Array>
             </Geometry>
         </Cell>
         <Cell id="33" value="" edge="1" parent="2" source="6" target="EnterAccountingData">
-            <Geometry relative="1" as="geometry">
-                <Array as="points">
-                    <Point x="255" y="200"/>
-                </Array>
-            </Geometry>
+          <Geometry relative="1" as="geometry">
+            <Array as="points">
+              <Point x="255" y="200"/>
+            </Array>
+          </Geometry>
         </Cell>
     </root>
 </GraphDataModel>`;
