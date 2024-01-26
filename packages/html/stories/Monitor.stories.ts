@@ -22,6 +22,7 @@ import {
   DomHelpers,
   EdgeStyle,
   Graph,
+  type ImageBox,
   InternalEvent,
   ModelXmlSerializer,
   Perimeter,
@@ -284,19 +285,23 @@ const Template = ({ label, ...args }: Record<string, any>) => {
    * Updates the display of the given graph using the XML data
    */
   function update(graph: Graph, xml: string) {
+    console.info('update called, xml:', xml);
     // if (xml != null && xml.length > 0) {
     if (xml) {
       const doc = xmlUtils.parseXml(xml);
 
-      if (doc != null && doc.documentElement != null) {
+      if (doc?.documentElement) {
+        // if (doc != null && doc.documentElement != null) {
         const model = graph.getDataModel();
         const nodes = doc.documentElement.getElementsByTagName('update');
 
-        if (nodes != null && nodes.length > 0) {
+        // if (nodes != null && nodes.length > 0) {
+        if (nodes?.length > 0) {
           model.beginUpdate();
 
           try {
             for (let i = 0; i < nodes.length; i++) {
+              console.info('node #', i);
               // Processes the activity nodes inside the process node
               const id = nodes[i].getAttribute('id');
               const state = nodes[i].getAttribute('state');
@@ -306,12 +311,15 @@ const Template = ({ label, ...args }: Record<string, any>) => {
 
               // Updates the cell color and adds some tooltip information
               if (cell) {
+                console.info('found cell', cell);
                 // Resets the fillcolor and the overlay
-                graph.setCellStyles('fillColor', 'white', [cell]);
+                // TODO this seems to have no effect!!!!
+                graph.setCellStyles('fillColor', 'red', [cell]);
                 graph.removeCellOverlays(cell);
 
                 // Changes the cell color for the known states
                 if (state == 'Running') {
+                  console.info('change color to running');
                   graph.setCellStyles('fillColor', '#f8cecc', [cell]);
                 } else if (state == 'Waiting') {
                   graph.setCellStyles('fillColor', '#fff2cc', [cell]);
@@ -321,6 +329,7 @@ const Template = ({ label, ...args }: Record<string, any>) => {
 
                 // Adds tooltip information using an overlay icon
                 if (state != 'Init') {
+                  console.info('create overlay for ', id);
                   // Sets the overlay for the cell in the graph
                   graph.addCellOverlay(
                     cell,
@@ -333,6 +342,8 @@ const Template = ({ label, ...args }: Record<string, any>) => {
             model.endUpdate();
           }
         }
+
+        console.info('cell ApproveReviewedClaim', model.getCell('ApproveReviewedClaim'));
       }
     }
   }
@@ -341,7 +352,7 @@ const Template = ({ label, ...args }: Record<string, any>) => {
    * Creates an overlay object using the given tooltip and text for the alert window
    * which is being displayed on click.
    */
-  function createOverlay(image, tooltip) {
+  function createOverlay(image: ImageBox, tooltip: string) {
     const overlay = new CellOverlay(image, tooltip);
 
     // Installs a handler for clicks on the overlay
@@ -444,6 +455,7 @@ const Template = ({ label, ...args }: Record<string, any>) => {
       state = 'Waiting';
     }
 
+    console.info('returned state', state);
     return state;
   }
 
