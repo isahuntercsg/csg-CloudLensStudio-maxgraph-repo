@@ -130,33 +130,43 @@ const Template = ({ label, ...args }: Record<string, any>) => {
         <Cell id="ReviewClaim" value="Review&#xa;Claim" vertex="1" parent="3">
           <Geometry x="480" y="80" width="100" height="40" as="geometry"/>
         </Cell>
-        <Cell id="22" value="X" style="step" vertex="1" parent="3">
-            <Geometry x="600" y="85" width="30" height="30" as="geometry"/>
+        <Cell id="22" value="X" vertex="1" parent="3">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="step" />
+            </Array>
+          </Object>
+          <Geometry x="600" y="85" width="30" height="30" as="geometry"/>
         </Cell>
         <Cell id="23" value="" edge="1" parent="3" source="ReviewClaim" target="22">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
         <Cell id="ApproveReviewedClaim" value="Approve Rev.&#xa;Claim" vertex="1" parent="3">
-            <Geometry x="650" y="80" width="100" height="40" as="geometry"/>
+          <Geometry x="650" y="80" width="100" height="40" as="geometry"/>
         </Cell>
         <Cell id="26" value="" edge="1" parent="3" source="22" target="ApproveReviewedClaim">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
-        <Cell id="27" value="X" style="step" vertex="1" parent="3">
-            <Geometry x="770" y="85" width="30" height="30" as="geometry"/>
+        <Cell id="27" value="X" vertex="1" parent="3">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="step" />
+            </Array>
+          </Object>
+          <Geometry x="770" y="85" width="30" height="30" as="geometry"/>
         </Cell>
         <Cell id="28" value="" edge="1" target="27" parent="3" source="ApproveReviewedClaim">
-            <Geometry relative="1" as="geometry">
-                <Point x="740" y="100" as="sourcePoint"/>
-                <Point x="760" y="100" as="targetPoint"/>
-            </Geometry>
+          <Geometry relative="1" as="geometry">
+            <Point x="740" y="100" as="sourcePoint"/>
+            <Point x="760" y="100" as="targetPoint"/>
+          </Geometry>
         </Cell>
         <Cell id="32" value="" edge="1" parent="3" source="27" target="ReviewClaim">
-            <Geometry relative="1" as="geometry">
-                <Array as="points">
-                    <Point x="665" y="160"/>
-                </Array>
-            </Geometry>
+          <Geometry relative="1" as="geometry">
+            <Array as="points">
+              <Point x="665" y="160"/>
+            </Array>
+          </Geometry>
         </Cell>
         <Cell id="4" value="Accountant" style="swimlane" vertex="1" parent="2">
             <Geometry x="30" y="200" width="820" height="200" as="geometry"/>
