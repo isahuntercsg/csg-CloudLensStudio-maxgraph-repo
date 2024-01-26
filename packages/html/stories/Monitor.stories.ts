@@ -18,7 +18,6 @@ limitations under the License.
 import {
   CellOverlay,
   cloneUtils,
-  constants,
   DomHelpers,
   EdgeStyle,
   Graph,
@@ -307,7 +306,7 @@ const Template = ({ label, ...args }: Record<string, any>) => {
             for (let i = 0; i < nodes.length; i++) {
               console.info('node #', i);
               // Processes the activity nodes inside the process node
-              const id = nodes[i].getAttribute('id');
+              const id = nodes[i].getAttribute('id')!;
               const state = nodes[i].getAttribute('state');
 
               // Gets the cell for the given activity name from the model
@@ -316,7 +315,7 @@ const Template = ({ label, ...args }: Record<string, any>) => {
               // Updates the cell color and adds some tooltip information
               if (cell) {
                 console.info('found cell', cell);
-                // Resets the fillcolor and the overlay
+                // Resets the fill color and the overlay
                 // TODO this seems to have no effect!!!!
                 graph.setCellStyles('fillColor', 'red', [cell]);
                 graph.removeCellOverlays(cell);
