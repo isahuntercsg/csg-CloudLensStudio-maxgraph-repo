@@ -62,48 +62,73 @@ const Template = ({ label, ...args }: Record<string, any>) => {
     <root>
         <Cell id="0"/>
         <Cell id="1" parent="0"/>
-        <Cell id="2" value="Claim Handling Process" style="swimlane" vertex="1" parent="1">
-            <Geometry x="1" width="850" height="400" as="geometry"/>
+        <Cell id="2" value="Claim Handling Process" vertex="1" parent="1">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="swimlane" />
+            </Array>
+          </Object>
+          <Geometry x="1" width="850" height="400" as="geometry"/>
         </Cell>
-        <Cell id="3" value="Claim Manager" style="swimlane" vertex="1" parent="2">
-            <Geometry x="30" width="820" height="200" as="geometry"/>
+        <Cell id="3" value="Claim Manager" vertex="1" parent="2">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="swimlane" />
+            </Array>
+          </Object>
+          <Geometry x="30" width="820" height="200" as="geometry"/>
         </Cell>
-        <Cell id="5" value="" style="start" vertex="1" parent="3">
-            <Geometry x="40" y="85" width="30" height="30" as="geometry"/>
+        <Cell id="5" value="" vertex="1" parent="3">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="start" />
+            </Array>
+          </Object>
+          <Geometry x="40" y="85" width="30" height="30" as="geometry"/>
         </Cell>
         <Cell id="AuthorizeClaim" value="Authorize&#xa;Claim" vertex="1" parent="3">
-            <Geometry x="90" y="80" width="100" height="40" as="geometry"/>
+          <Geometry x="90" y="80" width="100" height="40" as="geometry"/>
         </Cell>
-        <Cell id="6" value="X" style="step" vertex="1" parent="3">
-            <Geometry x="210" y="85" width="30" height="30" as="geometry"/>
+        <Cell id="6" value="X" vertex="1" parent="3">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="step" />
+            </Array>
+          </Object>
+          <Geometry x="210" y="85" width="30" height="30" as="geometry"/>
         </Cell>
         <Cell id="ApproveClaim" value="Approve&#xa;Claim" vertex="1" parent="3">
-            <Geometry x="260" y="80" width="100" height="40" as="geometry"/>
+          <Geometry x="260" y="80" width="100" height="40" as="geometry"/>
         </Cell>
-        <Cell id="7" value="X" style="step" vertex="1" parent="3">
-            <Geometry x="380" y="85" width="30" height="30" as="geometry"/>
+        <Cell id="7" value="X" vertex="1" parent="3">
+          <Object as="style">
+            <Array as="baseStyleNames">
+              <add value="step" />
+            </Array>
+          </Object>
+          <Geometry x="380" y="85" width="30" height="30" as="geometry"/>
         </Cell>
         <Cell id="8" value="" edge="1" parent="3" source="5" target="AuthorizeClaim">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
         <Cell id="9" value="" edge="1" parent="3" source="AuthorizeClaim" target="6">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
         <Cell id="10" value="" edge="1" parent="3" source="6" target="ApproveClaim">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
         <Cell id="11" value="" edge="1" parent="3" source="ApproveClaim" target="7">
-            <Geometry relative="1" as="geometry"/>
+          <Geometry relative="1" as="geometry"/>
         </Cell>
         <Cell id="12" value="" edge="1" parent="3" source="7" target="AuthorizeClaim">
-            <Geometry relative="1" as="geometry">
-                <Array as="points">
-                    <Point x="140" y="40"/>
-                </Array>
-            </Geometry>
+          <Geometry relative="1" as="geometry">
+            <Array as="points">
+              <Point x="140" y="40"/>
+            </Array>
+          </Geometry>
         </Cell>
         <Cell id="ReviewClaim" value="Review&#xa;Claim" vertex="1" parent="3">
-            <Geometry x="480" y="80" width="100" height="40" as="geometry"/>
+          <Geometry x="480" y="80" width="100" height="40" as="geometry"/>
         </Cell>
         <Cell id="22" value="X" style="step" vertex="1" parent="3">
             <Geometry x="600" y="85" width="30" height="30" as="geometry"/>
