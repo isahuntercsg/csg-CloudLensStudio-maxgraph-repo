@@ -372,14 +372,14 @@ const Template = ({ label, ...args }: Record<string, any>) => {
     style.gradientColor = 'white';
     style.gradientDirection = constants.DIRECTION.EAST;
     style.rounded = true;
-    style.shadow = true;
+    // style.shadow = true; // TMP disable until we cannot change the shadow color
     style.fontStyle = 1;
 
     style = graph.getStylesheet().getDefaultEdgeStyle();
     style.edgeStyle = EdgeStyle.ElbowConnector;
     style.strokeColor = '#808080';
     style.rounded = true;
-    // style.shadow = true;
+    // style.shadow = true; // TMP disable until we cannot change the shadow color
 
     style = {};
     style.shape = constants.SHAPE.SWIMLANE;
