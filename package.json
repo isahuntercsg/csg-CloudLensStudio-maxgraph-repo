@@ -31,5 +31,10 @@
   },
   "overrides": {
     "@types/node": "^16.18.0"
+  },
+  "dependencies": {
+    "@azure/arm-resources": "^5.2.0",
+    "@azure/identity": "^4.0.1",
+    "@maxgraph/core": "^0.7.0"
   }
 }
